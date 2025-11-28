@@ -14,7 +14,7 @@
             --color-fondo: #f0f2f5;
             --blanco: #ffffff;
             --texto: #333333;
-            --nota-bg: #e3f2fd; /* Color de fondo para las anotaciones */
+            --nota-bg: #e3f2fd;
             --nota-borde: #2196f3;
         }
 
@@ -81,7 +81,7 @@
             font-size: 2em;
         }
 
-        /* --- TARJETAS --- */
+        /* --- TARJETAS GENERALES --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -116,23 +116,16 @@
             display: inline-block; margin-bottom: 10px;
         }
 
-        /* --- ESTILO NUEVO: CAJA DE ANOTACIONES --- */
+        /* --- CAJA DE ANOTACIONES --- */
         .note-box {
             background-color: var(--nota-bg);
             border-left: 5px solid var(--nota-borde);
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            color: #444;
+            padding: 15px; margin-top: 15px; border-radius: 4px;
+            font-size: 0.9em; color: #444;
         }
         .note-title {
-            font-weight: bold;
-            color: #0d47a1;
-            display: block;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            font-size: 0.85em;
+            font-weight: bold; color: #0d47a1; display: block;
+            margin-bottom: 5px; text-transform: uppercase; font-size: 0.85em;
         }
 
         /* Enlaces */
@@ -157,13 +150,10 @@
         .ia-text { flex: 1; }
         .ia-img { flex: 1; border-radius: 10px; overflow: hidden; }
 
-        /* Estilo especial para tendencias dentro de la sección oscura */
         .dark-note {
             background-color: rgba(255, 255, 255, 0.1);
             border-left: 5px solid #00e5ff;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            padding: 15px; margin-bottom: 15px; border-radius: 5px;
         }
         .dark-note strong { color: #00e5ff; font-size: 1.1em; }
 
@@ -179,6 +169,75 @@
         footer {
             background-color: var(--color-primario); color: white;
             text-align: center; padding: 30px; margin-top: 50px;
+        }
+
+        /* =========================================
+           NUEVOS ESTILOS PARA LA SECCIÓN DE EQUIPO
+        ========================================= */
+        /* Estilo específico para las tarjetas del equipo para que sean clickeables */
+        .team-member {
+            cursor: pointer; /* Cambia el cursor a manito */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member:hover {
+            transform: scale(1.05); /* Efecto de agrandar al pasar el mouse */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background-color: #f9fcff;
+        }
+        .click-hint {
+            font-size: 0.8em; color: #666; margin-top: 5px; font-style: italic;
+        }
+
+        /* --- ESTILOS DE LA VENTANA MODAL (FOTOS EQUIPO) --- */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; 
+            z-index: 9999; 
+            padding-top: 60px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.85); /* Fondo negro semitransparente */
+            backdrop-filter: blur(5px); /* Efecto borroso en el fondo */
+        }
+
+        /* Imagen dentro del modal */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 500px; /* Tamaño máximo de la foto */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            animation: zoomIn 0.3s; /* Animación de entrada */
+        }
+
+        @keyframes zoomIn {
+            from {transform:scale(0.7); opacity:0} 
+            to {transform:scale(1); opacity:1}
+        }
+
+        /* Botón de cerrar (X) */
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 45px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover, .close:focus {
+            color: var(--color-acento);
+            text-decoration: none;
+        }
+        
+        /* Ajuste para pantallas pequeñas */
+        @media only screen and (max-width: 700px){
+            .modal-content { width: 95%; }
         }
     </style>
 </head>
@@ -202,12 +261,10 @@
     <section id="inicio">
         <h2>Bienvenidos a la Era Digital</h2>
         <img src="banner.jpg" style="width:100%; height:auto; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-bottom: 20px;" alt="Banner Historia TIC">
-        
         <p style="font-size: 1.1em;">
             El objetivo de esta página web es presentar el recorrido histórico de las Tecnologías de la Información y Comunicación (TIC). 
             Desde los primeros intentos del ser humano por automatizar el cálculo hasta las redes neuronales que hoy impulsan la Inteligencia Artificial.
         </p>
-
         <h3 style="margin-top: 40px;">Video Resumen: Historia de la Computación</h3>
         <div class="video-container">
             <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/AyT-qtwwtJY" title="Historia de la Computadora" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -223,7 +280,6 @@
     <section id="prehistoria">
         <h2>La Prehistoria del Computador (Gen 0)</h2>
         <p>Antes de la electricidad, existieron máquinas mecánicas fascinantes que sentaron las bases lógicas.</p>
-        
         <div class="grid-container">
             <div class="card">
                 <img src="abaco.jpg" class="card-img-top" alt="Ábaco">
@@ -255,9 +311,7 @@
     <section id="generaciones">
         <h2>Las 5 Generaciones del Computador</h2>
         <p>Evolución marcada por el cambio de componente electrónico.</p>
-
         <div class="grid-container">
-            
             <div class="card">
                 <img src="gen1_tubos.jpg" class="card-img-top" alt="Tubos de Vacío">
                 <div class="card-body">
@@ -265,98 +319,76 @@
                     <h3 class="card-title">1ª Generación</h3>
                     <p><strong>Hardware:</strong> Tubos de vacío. Enormes y calientes.</p>
                     <p><strong>Software:</strong> Lenguaje Máquina.</p>
-                    <p><strong>Ejemplo:</strong> ENIAC.</p>
-                    
                     <div class="note-box">
                         <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
-                        <p style="margin:0;">Impulsada por la <strong>Segunda Guerra Mundial</strong> (necesidad de cálculos balísticos). Su precursor fueron las grandes calculadoras electromecánicas de relés.</p>
+                        <p style="margin:0;">Impulsada por la <strong>Segunda Guerra Mundial</strong> para cálculos balísticos.</p>
                     </div>
-                    
                     <a href="https://es.wikipedia.org/wiki/ENIAC" target="_blank" class="btn-link">Más Info</a>
                 </div>
             </div>
-
             <div class="card">
                 <img src="gen2_transistores.jpg" class="card-img-top" alt="Transistores">
                 <div class="card-body">
                     <span class="badge">1956 - 1963</span>
                     <h3 class="card-title">2ª Generación</h3>
                     <p><strong>Hardware:</strong> Transistores. Más pequeñas y rápidas.</p>
-                    <p><strong>Software:</strong> Alto Nivel (COBOL).</p>
-                    
                     <div class="note-box">
                         <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
-                        <p style="margin:0;"><strong>Precursor:</strong> Invención del transistor (Bell Labs, 1947).<br><strong>Influencia:</strong> La Guerra Fría y la Carrera Espacial exigían equipos más ligeros.</p>
+                        <p style="margin:0;"><strong>Precursor:</strong> Invención del transistor (1947).<br><strong>Influencia:</strong> Carrera Espacial.</p>
                     </div>
-
                     <a href="https://es.wikipedia.org/wiki/Transistor" target="_blank" class="btn-link">Más Info</a>
                 </div>
             </div>
-
             <div class="card">
                 <img src="gen3_chip.jpg" class="card-img-top" alt="Chip">
                 <div class="card-body">
                     <span class="badge">1964 - 1971</span>
                     <h3 class="card-title">3ª Generación</h3>
                     <p><strong>Hardware:</strong> Circuitos Integrados (Chips).</p>
-                    <p><strong>Software:</strong> Sistemas Operativos.</p>
-                    
                     <div class="note-box">
                         <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
-                        <p style="margin:0;"><strong>Precursor:</strong> La idea de Jack Kilby de integrar componentes en una sola placa.<br><strong>Influencia:</strong> Automatización de negocios y reducción de costos.</p>
+                        <p style="margin:0;"><strong>Precursor:</strong> Idea de integrar componentes.<br><strong>Influencia:</strong> Automatización de negocios.</p>
                     </div>
-
                     <a href="https://es.wikipedia.org/wiki/Circuito_integrado" target="_blank" class="btn-link">Más Info</a>
                 </div>
             </div>
-
             <div class="card">
                 <img src="gen4_micro.jpg" class="card-img-top" alt="Microprocesador">
                 <div class="card-body">
                     <span class="badge">1971 - Presente</span>
                     <h3 class="card-title">4ª Generación</h3>
                     <p><strong>Hardware:</strong> Microprocesador (CPU en un chip).</p>
-                    <p><strong>Revolución:</strong> Nace la PC personal.</p>
-                    
                     <div class="note-box">
                         <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
-                        <p style="margin:0;"><strong>Precursor:</strong> Tecnología VLSI (Alta escala de integración).<br><strong>Influencia:</strong> La demanda de informática personal y doméstica (Apple, IBM).</p>
+                        <p style="margin:0;"><strong>Influencia:</strong> Demanda de informática personal (Apple, IBM).</p>
                     </div>
-
                     <a href="https://es.wikipedia.org/wiki/Microprocesador" target="_blank" class="btn-link">Más Info</a>
                 </div>
             </div>
-
         </div>
     </section>
 
     <section id="ia" class="ia-section">
         <h2>Tendencias Actuales e Inteligencia Artificial</h2>
-        
         <div class="ia-content">
             <div class="ia-text">
                 <h3>El Futuro es Ahora</h3>
                 <p>A continuación, presentamos las <strong>anotaciones clave</strong> sobre lo que mueve el mundo informático hoy:</p>
-                
                 <div class="dark-note">
                     <strong>☁️ Cloud Computing (La Nube)</strong>
-                    <p style="margin:5px 0 0 0; font-size:0.95em;">Desplazamiento del almacenamiento local a servidores en internet (Google Drive, AWS).</p>
+                    <p style="margin:5px 0 0 0; font-size:0.95em;">Desplazamiento del almacenamiento a internet (AWS, Azure).</p>
                 </div>
-
                 <div class="dark-note">
                     <strong>📊 Big Data</strong>
-                    <p style="margin:5px 0 0 0; font-size:0.95em;">Análisis de volúmenes de datos tan grandes que los humanos no pueden procesar sin algoritmos.</p>
+                    <p style="margin:5px 0 0 0; font-size:0.95em;">Análisis masivo de datos para toma de decisiones.</p>
                 </div>
-
                 <div class="dark-note">
                     <strong>🔒 Ciberseguridad</strong>
-                    <p style="margin:5px 0 0 0; font-size:0.95em;">El campo crítico de proteger la infraestructura digital ante ataques globales.</p>
+                    <p style="margin:5px 0 0 0; font-size:0.95em;">Protección crítica de la infraestructura digital.</p>
                 </div>
-
                 <h3 style="margin-top: 30px; color: #00d2ff;">🤖 Inteligencia Artificial (IA)</h3>
-                <p>Sistemas que simulan la cognición humana. Desde el reconocimiento facial hasta IAs generativas.</p>
+                <p>Sistemas que simulan la cognición humana. IAs generativas como ChatGPT.</p>
             </div>
-            
             <div class="ia-img">
                 <img src="ia_robot.jpg" alt="IA Robot" style="width:100%; height:auto; border-radius:10px;">
             </div>
@@ -366,19 +398,22 @@
     <section id="equipo">
         <h2>Equipo de Desarrollo</h2>
         <p>Estudiantes de la Cátedra Fundamentos de la Informática - Sección 02</p>
-        
         <div class="grid-container">
-            <div class="card" style="text-align: center; padding: 20px;">
-                <p style="font-size: 1.2em; color: #0077b6;"><strong>Sergio Garcia</strong></p>
+            <div class="card team-member" data-image="foto1.jpg" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6; margin-bottom: 5px;"><strong>Sergio Garcia</strong></p>
+                <p class="click-hint">(Clic para ver foto)</p>
             </div>
-            <div class="card" style="text-align: center; padding: 20px;">
-                <p style="font-size: 1.2em; color: #0077b6;"><strong>Caleb Hernandez</strong></p>
+            <div class="card team-member" data-image="foto2.jpg" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6; margin-bottom: 5px;"><strong>Caleb Hernandez</strong></p>
+                <p class="click-hint">(Clic para ver foto)</p>
             </div>
-            <div class="card" style="text-align: center; padding: 20px;">
-                <p style="font-size: 1.2em; color: #0077b6;"><strong>Kevin Gonzalez</strong></p>
+            <div class="card team-member" data-image="foto3.jpg" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6; margin-bottom: 5px;"><strong>Kevin Gonzalez</strong></p>
+                <p class="click-hint">(Clic para ver foto)</p>
             </div>
-            <div class="card" style="text-align: center; padding: 20px;">
-                <p style="font-size: 1.2em; color: #0077b6;"><strong>Sebastian Hernandez</strong></p>
+            <div class="card team-member" data-image="foto4.jpg" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6; margin-bottom: 5px;"><strong>Sebastian Hernandez</strong></p>
+                <p class="click-hint">(Clic para ver foto)</p>
             </div>
         </div>
     </section>
@@ -387,8 +422,49 @@
 
 <footer>
     <p>Proyecto Universitario UNEG - Noviembre 2025</p>
-    <p style="font-size: 0.8em; opacity: 0.7;">Desarrollado con HTML5 y CSS3 | Versión Final</p>
+    <p style="font-size: 0.8em; opacity: 0.7;">Desarrollado con HTML5 y CSS3 | Versión Final Interactiva</p>
 </footer>
+
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+</div>
+
+<script>
+    // Obtenemos los elementos necesarios
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("img01");
+    var teamMembers = document.getElementsByClassName("team-member");
+    var span = document.getElementsByClassName("close")[0];
+
+    // Recorremos todas las tarjetas del equipo y les agregamos el evento de "clic"
+    for (var i = 0; i < teamMembers.length; i++) {
+        teamMembers[i].onclick = function(){
+            // Mostramos el modal
+            modal.style.display = "block";
+            // Obtenemos el nombre de la foto del atributo "data-image" de la tarjeta clickeada
+            var imageName = this.getAttribute('data-image');
+            // Ponemos esa foto dentro del modal
+            modalImg.src = imageName;
+            // Si por casualidad la imagen no existe, ponemos una de respaldo (opcional)
+             modalImg.onerror = function(){
+                this.src = 'https://via.placeholder.com/500x500?text=Foto+no+disponible';
+             };
+        }
+    }
+
+    // Cuando se hace clic en la 'X', se cierra el modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // También cerramos si se hace clic fuera de la imagen (en el fondo oscuro)
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>
