@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia y Evolución TIC | UNEG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primario: #0a2e52; 
+            --color-secundario: #0077b6; 
+            --color-acento: #00b4d8; 
+            --color-fondo: #f0f2f5;
+            --blanco: #ffffff;
+            --texto: #333333;
+            --nota-bg: #e3f2fd; /* Color de fondo para las anotaciones */
+            --nota-borde: #2196f3;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-fondo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--color-primario); }
+
+        /* --- ENCABEZADO --- */
+        header {
+            background: linear-gradient(90deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { margin: 0; font-size: 2.5em; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 1.2em; opacity: 0.9; }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background-color: #1a1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        nav a:hover { background-color: var(--color-acento); color: var(--color-primario); }
+
+        /* --- CONTENEDORES --- */
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        section {
+            margin-bottom: 60px;
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        section h2 {
+            border-bottom: 3px solid var(--color-acento);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        /* --- TARJETAS --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e1e1e1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border-color: var(--color-acento);
+        }
+        .card-img-top {
+            width: 100%; height: 200px; object-fit: cover;
+            border-top-left-radius: 12px; border-top-right-radius: 12px;
+        }
+        .card-body {
+            padding: 20px;
+            flex-grow: 1; display: flex; flex-direction: column;
+        }
+        .card-title { color: var(--color-secundario); margin-top: 0; font-size: 1.4em; }
+        .badge {
+            background-color: var(--color-acento); color: white; padding: 5px 10px;
+            border-radius: 20px; font-size: 0.8em; font-weight: bold;
+            display: inline-block; margin-bottom: 10px;
+        }
+
+        /* --- ESTILO NUEVO: CAJA DE ANOTACIONES --- */
+        .note-box {
+            background-color: var(--nota-bg);
+            border-left: 5px solid var(--nota-borde);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #444;
+        }
+        .note-title {
+            font-weight: bold;
+            color: #0d47a1;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+
+        /* Enlaces */
+        .btn-link {
+            display: inline-block; margin-top: 15px; padding: 8px 15px;
+            background-color: var(--color-fondo); color: var(--color-secundario);
+            text-decoration: none; border-radius: 5px; font-size: 0.9em;
+            font-weight: bold; border: 1px solid var(--color-secundario);
+            text-align: center; transition: all 0.3s ease; align-self: center;
+        }
+        .btn-link:hover { background-color: var(--color-secundario); color: white; }
+
+        /* --- SECCIÓN IA Y TENDENCIAS --- */
+        .ia-section {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+        }
+        .ia-section h2, .ia-section h3 { color: white; }
+        .ia-section p { color: #e0e0e0; }
+        
+        .ia-content { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; }
+        .ia-text { flex: 1; }
+        .ia-img { flex: 1; border-radius: 10px; overflow: hidden; }
+
+        /* Estilo especial para tendencias dentro de la sección oscura */
+        .dark-note {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 5px solid #00e5ff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .dark-note strong { color: #00e5ff; font-size: 1.1em; }
+
+        /* Video */
+        .video-container {
+            position: relative; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; border-radius: 15px; margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); background-color: #000;
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--color-primario); color: white;
+            text-align: center; padding: 30px; margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Historia y Evolución de las TIC</h1>
+    <p>Universidad Nacional Experimental de Guayana - Proyecto Ingeniería Informática</p>
+</header>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#prehistoria">Prehistoria</a>
+    <a href="#generaciones">Generaciones</a>
+    <a href="#ia">Tendencias e IA</a>
+    <a href="#equipo">Equipo</a>
+</nav>
+
+<div class="container">
+
+    <section id="inicio">
+        <h2>Bienvenidos a la Era Digital</h2>
+        <img src="banner.jpg" style="width:100%; height:auto; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-bottom: 20px;" alt="Banner Historia TIC">
+        
+        <p style="font-size: 1.1em;">
+            El objetivo de esta página web es presentar el recorrido histórico de las Tecnologías de la Información y Comunicación (TIC). 
+            Desde los primeros intentos del ser humano por automatizar el cálculo hasta las redes neuronales que hoy impulsan la Inteligencia Artificial.
+        </p>
+
+        <h3 style="margin-top: 40px;">Video Resumen: Historia de la Computación</h3>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/AyT-qtwwtJY" title="Historia de la Computadora" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <p style="font-size: 0.9em; color: #555; margin-bottom: 5px;">¿El video no carga?</p>
+            <a href="https://www.youtube.com/watch?v=AyT-qtwwtJY" target="_blank" class="btn-link" style="background-color: #cc0000; color: white; border: none;">
+                ▶ Ver en YouTube
+            </a>
+        </div>
+    </section>
+
+    <section id="prehistoria">
+        <h2>La Prehistoria del Computador (Gen 0)</h2>
+        <p>Antes de la electricidad, existieron máquinas mecánicas fascinantes que sentaron las bases lógicas.</p>
+        
+        <div class="grid-container">
+            <div class="card">
+                <img src="abaco.jpg" class="card-img-top" alt="Ábaco">
+                <div class="card-body">
+                    <h3 class="card-title">El Ábaco (3000 a.C.)</h3>
+                    <p>Primer dispositivo mecánico de contabilidad. Operaciones básicas con cuentas en varillas.</p>
+                    <a href="https://es.wikipedia.org/wiki/%C3%81baco" target="_blank" class="btn-link">Wikipedia</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="pascalina.jpg" class="card-img-top" alt="Pascalina">
+                <div class="card-body">
+                    <h3 class="card-title">La Pascalina (1642)</h3>
+                    <p>Inventada por Blaise Pascal. Primera calculadora de engranajes.</p>
+                    <a href="https://es.wikipedia.org/wiki/Pascalina" target="_blank" class="btn-link">Ver Más</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="analitica.jpg" class="card-img-top" alt="Máquina Analítica">
+                <div class="card-body">
+                    <h3 class="card-title">Máquina Analítica (1833)</h3>
+                    <p>Diseñada por Babbage. La "abuela" teórica de la computadora moderna.</p>
+                    <a href="https://es.wikipedia.org/wiki/M%C3%A1quina_anal%C3%ADtica" target="_blank" class="btn-link">Ver Más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="generaciones">
+        <h2>Las 5 Generaciones del Computador</h2>
+        <p>Evolución marcada por el cambio de componente electrónico.</p>
+
+        <div class="grid-container">
+            
+            <div class="card">
+                <img src="gen1_tubos.jpg" class="card-img-top" alt="Tubos de Vacío">
+                <div class="card-body">
+                    <span class="badge">1940 - 1956</span>
+                    <h3 class="card-title">1ª Generación</h3>
+                    <p><strong>Hardware:</strong> Tubos de vacío. Enormes y calientes.</p>
+                    <p><strong>Software:</strong> Lenguaje Máquina.</p>
+                    <p><strong>Ejemplo:</strong> ENIAC.</p>
+                    
+                    <div class="note-box">
+                        <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
+                        <p style="margin:0;">Impulsada por la <strong>Segunda Guerra Mundial</strong> (necesidad de cálculos balísticos). Su precursor fueron las grandes calculadoras electromecánicas de relés.</p>
+                    </div>
+                    
+                    <a href="https://es.wikipedia.org/wiki/ENIAC" target="_blank" class="btn-link">Más Info</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="gen2_transistores.jpg" class="card-img-top" alt="Transistores">
+                <div class="card-body">
+                    <span class="badge">1956 - 1963</span>
+                    <h3 class="card-title">2ª Generación</h3>
+                    <p><strong>Hardware:</strong> Transistores. Más pequeñas y rápidas.</p>
+                    <p><strong>Software:</strong> Alto Nivel (COBOL).</p>
+                    
+                    <div class="note-box">
+                        <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
+                        <p style="margin:0;"><strong>Precursor:</strong> Invención del transistor (Bell Labs, 1947).<br><strong>Influencia:</strong> La Guerra Fría y la Carrera Espacial exigían equipos más ligeros.</p>
+                    </div>
+
+                    <a href="https://es.wikipedia.org/wiki/Transistor" target="_blank" class="btn-link">Más Info</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="gen3_chip.jpg" class="card-img-top" alt="Chip">
+                <div class="card-body">
+                    <span class="badge">1964 - 1971</span>
+                    <h3 class="card-title">3ª Generación</h3>
+                    <p><strong>Hardware:</strong> Circuitos Integrados (Chips).</p>
+                    <p><strong>Software:</strong> Sistemas Operativos.</p>
+                    
+                    <div class="note-box">
+                        <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
+                        <p style="margin:0;"><strong>Precursor:</strong> La idea de Jack Kilby de integrar componentes en una sola placa.<br><strong>Influencia:</strong> Automatización de negocios y reducción de costos.</p>
+                    </div>
+
+                    <a href="https://es.wikipedia.org/wiki/Circuito_integrado" target="_blank" class="btn-link">Más Info</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="gen4_micro.jpg" class="card-img-top" alt="Microprocesador">
+                <div class="card-body">
+                    <span class="badge">1971 - Presente</span>
+                    <h3 class="card-title">4ª Generación</h3>
+                    <p><strong>Hardware:</strong> Microprocesador (CPU en un chip).</p>
+                    <p><strong>Revolución:</strong> Nace la PC personal.</p>
+                    
+                    <div class="note-box">
+                        <span class="note-title">📝 PRECURSORES E INFLUENCIA</span>
+                        <p style="margin:0;"><strong>Precursor:</strong> Tecnología VLSI (Alta escala de integración).<br><strong>Influencia:</strong> La demanda de informática personal y doméstica (Apple, IBM).</p>
+                    </div>
+
+                    <a href="https://es.wikipedia.org/wiki/Microprocesador" target="_blank" class="btn-link">Más Info</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="ia" class="ia-section">
+        <h2>Tendencias Actuales e Inteligencia Artificial</h2>
+        
+        <div class="ia-content">
+            <div class="ia-text">
+                <h3>El Futuro es Ahora</h3>
+                <p>A continuación, presentamos las <strong>anotaciones clave</strong> sobre lo que mueve el mundo informático hoy:</p>
+                
+                <div class="dark-note">
+                    <strong>☁️ Cloud Computing (La Nube)</strong>
+                    <p style="margin:5px 0 0 0; font-size:0.95em;">Desplazamiento del almacenamiento local a servidores en internet (Google Drive, AWS).</p>
+                </div>
+
+                <div class="dark-note">
+                    <strong>📊 Big Data</strong>
+                    <p style="margin:5px 0 0 0; font-size:0.95em;">Análisis de volúmenes de datos tan grandes que los humanos no pueden procesar sin algoritmos.</p>
+                </div>
+
+                <div class="dark-note">
+                    <strong>🔒 Ciberseguridad</strong>
+                    <p style="margin:5px 0 0 0; font-size:0.95em;">El campo crítico de proteger la infraestructura digital ante ataques globales.</p>
+                </div>
+
+                <h3 style="margin-top: 30px; color: #00d2ff;">🤖 Inteligencia Artificial (IA)</h3>
+                <p>Sistemas que simulan la cognición humana. Desde el reconocimiento facial hasta IAs generativas.</p>
+            </div>
+            
+            <div class="ia-img">
+                <img src="ia_robot.jpg" alt="IA Robot" style="width:100%; height:auto; border-radius:10px;">
+            </div>
+        </div>
+    </section>
+
+    <section id="equipo">
+        <h2>Equipo de Desarrollo</h2>
+        <p>Estudiantes de la Cátedra Fundamentos de la Informática - Sección 02</p>
+        
+        <div class="grid-container">
+            <div class="card" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6;"><strong>Sergio Garcia</strong></p>
+            </div>
+            <div class="card" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6;"><strong>Caleb Hernandez</strong></p>
+            </div>
+            <div class="card" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6;"><strong>Kevin Gonzalez</strong></p>
+            </div>
+            <div class="card" style="text-align: center; padding: 20px;">
+                <p style="font-size: 1.2em; color: #0077b6;"><strong>Sebastian Hernandez</strong></p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>Proyecto Universitario UNEG - Noviembre 2025</p>
+    <p style="font-size: 0.8em; opacity: 0.7;">Desarrollado con HTML5 y CSS3 | Versión Final</p>
+</footer>
+
+</body>
+</html>
